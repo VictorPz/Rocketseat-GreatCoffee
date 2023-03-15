@@ -15,17 +15,28 @@
 }
 
 body.active {
-  background: black;
+  background: var(--backgrond);
 }
 
-body {
+body,
+html {
   width: 100vw;
   height: 100%;
-  background: black url(./assets/blur-mobile.png) no-repeat bottom fixed;
+  background: var(--backgrond) url(./assets/blur-mobile.png) no-repeat bottom
+    fixed;
+  overflow-x: hidden;
 }
 
 header {
   border-bottom: var(--border) 1px solid;
+}
+
+header .logoMobile {
+  background: url(./assets/logo-mobile.svg) no-repeat center;
+}
+
+header .logoDesktop {
+  display: none;
 }
 
 #headerContent {
@@ -34,11 +45,20 @@ header {
   margin: 30px 20px 26px;
 }
 
-header button {
+#menuButton {
   background: url("./assets/menu-buguer-open.svg") center no-repeat;
   border: none;
   width: 48px;
   height: 48px;
+}
+
+#menuButton.active {
+  background: url("./assets/menu-buguer-close.svg") center no-repeat;
+  transition: 0.3s;
+}
+
+#buttonDesktop {
+  display: none;
 }
 
 body ul {
@@ -50,11 +70,6 @@ body ul.active {
   display: block;
   -webkit-animation: fade-in 1s;
   animation: fade-in 1s;
-}
-
-header button.active {
-  background: url("./assets/menu-buguer-close.svg") center no-repeat;
-  transition: 0.3s;
 }
 
 .menuItem {
@@ -141,16 +156,16 @@ header button.active {
 }
 
 #coffeeImage {
-  display: flex;
+  display: block;
   justify-content: center;
-  width: 420px;
-  height: auto;
+  width: 428px;
   margin: 25px auto 0px;
 }
 
 #coffeeImage img {
-  width: 100%;
+  width: 100vw;
   height: 100%;
+  object-position: bottom;
   object-fit: contain;
 }
 
@@ -186,5 +201,246 @@ header button.active {
   }
   to {
     opacity: 0;
+  }
+}
+
+/* Media */
+@media (max-width: 393px) {
+  #supportText {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 394px) and (max-width: 428px) {
+  #supportText {
+    font-size: 48px;
+  }
+
+  #pageContent {
+    display: block;
+    position: relative;
+  }
+
+  #coffeeImage {
+    display: flex;
+    justify-content: center;
+    width: 428px;
+    position: fixed;
+    bottom: 0px;
+  }
+}
+
+@media (min-width: 540px) and (max-width: 766px) {
+  body,
+  html {
+    background-color: var(--backgrond);
+    background-image: url(./assets/blur-2.png), url(./assets/blur-1.png);
+    background-position: right top, left bottom;
+    background-repeat: no-repeat;
+  }
+
+  #pageContent {
+    display: block;
+  }
+
+  #coffeeImage {
+    display: flex;
+    justify-content: center;
+    width: 540px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 899px) {
+  body,
+  html {
+    background-color: var(--backgrond);
+    background-image: url(./assets/blur-2.png), url(./assets/blur-1.png);
+    background-position: right top, left bottom;
+    background-repeat: no-repeat;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+  }
+
+  body ul {
+    display: inline;
+  }
+
+  header button {
+    display: none;
+  }
+
+  .menuItem {
+    border: none;
+    display: inline;
+    list-style: none;
+  }
+
+  .menuLink {
+    padding: 15px;
+    display: inline;
+    font-weight: 400;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  .menuLink.active {
+    font-weight: 700;
+    border-left: none;
+  }
+
+  #pageContent {
+    display: block;
+    position: relative;
+  }
+
+  #buyButton {
+    display: flex;
+    align-items: center;
+    margin: 88px auto 70px;
+    width: 250px;
+    height: 50px;
+  }
+
+  #buyButton p {
+    font-size: 18px;
+    letter-spacing: 0.02em;
+    line-height: 15px;
+    font-weight: 700;
+  }
+
+  #buyButton img {
+    padding-left: 10px;
+  }
+
+  #supportText {
+    font-size: 80px;
+    line-height: 100px;
+    letter-spacing: -0.03em;
+  }
+
+  #coffeeImage {
+    display: flex;
+    justify-content: center;
+    width: 820px;
+    position: fixed;
+    bottom: 0px;
+  }
+
+  #coffeeImage img {
+    width: 100vw;
+    height: 100%;
+    object-position: bottom;
+    object-fit: contain;
+  }
+}
+
+@media (min-width: 900px) {
+  body,
+  html {
+    background-color: var(--backgrond);
+    background-image: url(./assets/blur-2.png), url(./assets/blur-1.png);
+    background-position: right top, left bottom;
+    background-repeat: no-repeat;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    margin: 20px auto;
+  }
+
+  header #menuButton {
+    display: none;
+  }
+
+  header .logoDesktop {
+    display: flex;
+  }
+
+  .logoMobile {
+    display: none;
+  }
+
+  #buttonDesktop {
+    display: flex;
+    align-items: center;
+    padding: 11px 38px;
+    border: 1px solid var(--button);
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--text-color);
+  }
+
+  #buttonDesktop p {
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    line-height: 15px;
+    font-weight: 700;
+  }
+
+  body #buyButton {
+    display: none;
+  }
+
+  body ul {
+    display: inline;
+  }
+
+  .menuItem {
+    border: none;
+    display: inline;
+    list-style: none;
+  }
+
+  .menuLink {
+    padding: 15px;
+    display: inline;
+    font-weight: 400;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  .menuLink.active {
+    font-weight: 700;
+    border-left: none;
+  }
+
+  #slogamText {
+    display: none;
+  }
+
+  #supportText {
+    text-align: center;
+    font-size: 80px;
+    line-height: 109px;
+    letter-spacing: -0.03em;
+    margin: 20px auto;
+  }
+
+  #pageContent {
+    position: relative;
+  }
+
+  #coffeeImage {
+    position: fixed;
+    margin-left: -32%;
+    bottom: 0px;
+    left: 50%;
+    width: 65%;
+    height: 55%;
+  }
+
+  #coffeeImage img {
+    width: 100%;
+    height: 100%;
+    object-position: bottom;
+    object-fit: contain;
   }
 }
